@@ -129,6 +129,7 @@
             this.btnUrunKaydet.TabIndex = 9;
             this.btnUrunKaydet.Text = "Kaydet";
             this.btnUrunKaydet.UseVisualStyleBackColor = true;
+            this.btnUrunKaydet.Click += new System.EventHandler(this.btnUrunKaydet_Click);
             // 
             // Form1
             // 

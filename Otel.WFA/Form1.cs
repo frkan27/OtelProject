@@ -34,9 +34,9 @@ namespace Otel.WFA
                     //Eğer secili kategorinin ıd si =sıfırsa üst kategori ekliyorumdur.
                     //==0 sa null değilse ıd yi ekle.
                 });
-                
+                MessageBox.Show("Kategorileri eklendi.");
 
-                
+
             }
             catch (Exception ex)
             {
@@ -69,6 +69,8 @@ namespace Otel.WFA
                     //x.categories alt kategorilerin listesini veriyor.subcategorylerin sayısını verir.
                 }
                         ));
+
+                
             }
             catch (Exception ex)
             {
@@ -132,10 +134,12 @@ namespace Otel.WFA
         //treenode dan secim yapışdıktan sonra.
         private void tvCategory_AfterSelect(object sender, TreeViewEventArgs e)
         {
-             categoryId = (int)e.Node.Tag;
+            categoryId = (int)e.Node.Tag;
             var category = new CategoryRepo().GetById(categoryId.Value);
             //seçili kategoriyi veri tabanında çekiyoruz.
-            lstUrunler.DataSource = category.Products.OrderBy(x => x.Name)//secili categorynin products ı geldi.
+            lstUrunler.DataSource = new ProductRepo()
+                .GetAll(x=>x.CategoryId==categoryId)
+                .OrderBy(x => x.Name)//secili categorynin products ı geldi.
                 .Select(x => new ProductViewModel()//objemizi initializ edelim.//productviewmodel tipinde çağırdım.
                 {
                     Name=x.Name,
@@ -150,6 +154,34 @@ namespace Otel.WFA
 
 
 
+        }
+
+        private void btnUrunKaydet_Click(object sender, EventArgs e)
+        {
+            if (categoryId==null)
+            {
+                MessageBox.Show("lütfen bir kategori seciniz");
+                return;
+            }
+            try
+            {
+                //yeni ürün ekliyoruz.
+                new ProductRepo().Insert(new Product()
+                {
+                    CategoryId=categoryId.Value,
+                    Name=txtUrunAdi.Text,
+                    Price=nudFiyat.Value,
+                    IsActive=cbSatistaMi.Checked
+                });
+                MessageBox.Show("Urun ekleme basarılı.");
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
