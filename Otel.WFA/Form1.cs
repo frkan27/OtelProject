@@ -97,7 +97,11 @@ namespace Otel.WFA
             {
                 //root u oluşturan mekanizma.
                 TreeNode node = new TreeNode(category.Name);//category.Name i nodeaekliyor.//içeceklerin ismini yazdı.
-                tvCategory.Nodes.Add(node);//içeceklerin isminien dıstaki root a ekledi.
+                {
+                    node.Tag = category.Id;//tag object tipinde oldupu için istefiğim değeri vereblirim.categoryıdyi gömüyorum
+                }
+
+                    tvCategory.Nodes.Add(node);//içeceklerin isminien dıstaki root a ekledi.
                 if(category.Categories.Count>0)//içeceklerin içinde 2 alt kategori var. true oldu içeri girdi.
                 {
                     SetSubNodes(node, category.Categories.ToList());
@@ -113,6 +117,9 @@ namespace Otel.WFA
             foreach (var category in categories)//birden fazla kategori gelceğiiçin foreach.//iki tane var diyelim limonata ve kahve.
             {
                 TreeNode subnode = new TreeNode(category.Name);
+                {
+                    node.Tag = category.Id;//etiket demek arka planda veri tasımak için kullanılır.
+                }
                 node.Nodes.Add(subnode);//bununda alt kategorisi varsa if le sorguluyoruz.//categoryname limonata yazıyor.
                 if (category.Categories.Count>0)
                 {
@@ -121,9 +128,27 @@ namespace Otel.WFA
                 }
             }
         }
-
+        private int? categoryId;//nullable yapıyorum cünkü kontrol edicem seçilipsecilmediğini.
+        //treenode dan secim yapışdıktan sonra.
         private void tvCategory_AfterSelect(object sender, TreeViewEventArgs e)
         {
+             categoryId = (int)e.Node.Tag;
+            var category = new CategoryRepo().GetById(categoryId.Value);
+            //seçili kategoriyi veri tabanında çekiyoruz.
+            lstUrunler.DataSource = category.Products.OrderBy(x => x.Name)//secili categorynin products ı geldi.
+                .Select(x => new ProductViewModel()//objemizi initializ edelim.//productviewmodel tipinde çağırdım.
+                {
+                    Name=x.Name,
+                    Id=x.Id,
+                    CategoryId=x.CategoryId,
+                    IsActive=x.IsActive,
+                    Price=x.Price 
+
+                })
+                .ToList();
+
+
+
 
         }
     }

@@ -33,6 +33,12 @@
             this.txtKategoriAdi = new System.Windows.Forms.TextBox();
             this.rtbAciklama = new System.Windows.Forms.RichTextBox();
             this.btnKategori = new System.Windows.Forms.Button();
+            this.lstUrunler = new System.Windows.Forms.ListBox();
+            this.txtUrunAdi = new System.Windows.Forms.TextBox();
+            this.nudFiyat = new System.Windows.Forms.NumericUpDown();
+            this.cbSatistaMi = new System.Windows.Forms.CheckBox();
+            this.btnUrunKaydet = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFiyat)).BeginInit();
             this.SuspendLayout();
             // 
             // tvCategory
@@ -77,11 +83,63 @@
             this.btnKategori.UseVisualStyleBackColor = true;
             this.btnKategori.Click += new System.EventHandler(this.btnKategori_Click);
             // 
+            // lstUrunler
+            // 
+            this.lstUrunler.FormattingEnabled = true;
+            this.lstUrunler.Location = new System.Drawing.Point(417, 22);
+            this.lstUrunler.Name = "lstUrunler";
+            this.lstUrunler.Size = new System.Drawing.Size(140, 108);
+            this.lstUrunler.TabIndex = 5;
+            // 
+            // txtUrunAdi
+            // 
+            this.txtUrunAdi.Location = new System.Drawing.Point(417, 151);
+            this.txtUrunAdi.Name = "txtUrunAdi";
+            this.txtUrunAdi.Size = new System.Drawing.Size(140, 20);
+            this.txtUrunAdi.TabIndex = 6;
+            // 
+            // nudFiyat
+            // 
+            this.nudFiyat.DecimalPlaces = 2;
+            this.nudFiyat.Location = new System.Drawing.Point(417, 198);
+            this.nudFiyat.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudFiyat.Name = "nudFiyat";
+            this.nudFiyat.Size = new System.Drawing.Size(140, 20);
+            this.nudFiyat.TabIndex = 7;
+            // 
+            // cbSatistaMi
+            // 
+            this.cbSatistaMi.AutoSize = true;
+            this.cbSatistaMi.Location = new System.Drawing.Point(417, 240);
+            this.cbSatistaMi.Name = "cbSatistaMi";
+            this.cbSatistaMi.Size = new System.Drawing.Size(80, 17);
+            this.cbSatistaMi.TabIndex = 8;
+            this.cbSatistaMi.Text = "checkBox1";
+            this.cbSatistaMi.UseVisualStyleBackColor = true;
+            // 
+            // btnUrunKaydet
+            // 
+            this.btnUrunKaydet.Location = new System.Drawing.Point(419, 263);
+            this.btnUrunKaydet.Name = "btnUrunKaydet";
+            this.btnUrunKaydet.Size = new System.Drawing.Size(78, 55);
+            this.btnUrunKaydet.TabIndex = 9;
+            this.btnUrunKaydet.Text = "Kaydet";
+            this.btnUrunKaydet.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnUrunKaydet);
+            this.Controls.Add(this.cbSatistaMi);
+            this.Controls.Add(this.nudFiyat);
+            this.Controls.Add(this.txtUrunAdi);
+            this.Controls.Add(this.lstUrunler);
             this.Controls.Add(this.btnKategori);
             this.Controls.Add(this.rtbAciklama);
             this.Controls.Add(this.txtKategoriAdi);
@@ -90,6 +148,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudFiyat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +161,11 @@
         private System.Windows.Forms.TextBox txtKategoriAdi;
         private System.Windows.Forms.RichTextBox rtbAciklama;
         private System.Windows.Forms.Button btnKategori;
+        private System.Windows.Forms.ListBox lstUrunler;
+        private System.Windows.Forms.TextBox txtUrunAdi;
+        private System.Windows.Forms.NumericUpDown nudFiyat;
+        private System.Windows.Forms.CheckBox cbSatistaMi;
+        private System.Windows.Forms.Button btnUrunKaydet;
     }
 }
 
