@@ -74,6 +74,7 @@
             this.btnKategori.TabIndex = 4;
             this.btnKategori.Text = "Kaydet";
             this.btnKategori.UseVisualStyleBackColor = true;
+            this.btnKategori.Click += new System.EventHandler(this.btnKategori_Click);
             // 
             // Form1
             // 
@@ -87,6 +88,7 @@
             this.Controls.Add(this.tvCategory);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
