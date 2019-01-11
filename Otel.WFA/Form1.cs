@@ -43,7 +43,8 @@ namespace Otel.WFA
 
                 MessageBox.Show(ex.Message);
             }
-            GetCategories();
+            GetCategories();//ekleme yapınca combobox dolsun.
+            GetCategoryTreeView();//Her ekleme yaptıktan somra treeview dolsun diye burda çağırdık.
         }
 
         private void GetCategories()
@@ -83,6 +84,47 @@ namespace Otel.WFA
         private void Form1_Load(object sender, EventArgs e)
         {
             GetCategories();
+            GetCategoryTreeView();
+        }
+
+        private void GetCategoryTreeView()
+        {
+            //burda kendini çağıran bir fonksiyon (recursive) yazmam lazım.
+            //çünkü en üst menüden sonra ne kadar alt menü olcağı belli değil. her seferinde tekrar etmesi lazım.
+            tvCategory.Nodes.Clear();
+            var categories = new CategoryRepo().GetAll(x => x.SupCategoryId == null).OrderBy(x=>x.Name).ToList();//en üst kategoriler gelsin.subcategoryıd leri null çünkü.
+            foreach (var category in categories)
+            {
+                //root u oluşturan mekanizma.
+                TreeNode node = new TreeNode(category.Name);//category.Name i nodeaekliyor.//içeceklerin ismini yazdı.
+                tvCategory.Nodes.Add(node);//içeceklerin isminien dıstaki root a ekledi.
+                if(category.Categories.Count>0)//içeceklerin içinde 2 alt kategori var. true oldu içeri girdi.
+                {
+                    SetSubNodes(node, category.Categories.ToList());
+                }
+            }
+
+            tvCategory.ExpandAll();//hepsini açıyo dallı görünüş.
+        }
+
+        private void SetSubNodes(TreeNode node,List<Category> categories)
+        //node nereye ekliceğimi söyliyeecek. list te içine neleri ekliceğimi.
+        {
+            foreach (var category in categories)//birden fazla kategori gelceğiiçin foreach.//iki tane var diyelim limonata ve kahve.
+            {
+                TreeNode subnode = new TreeNode(category.Name);
+                node.Nodes.Add(subnode);//bununda alt kategorisi varsa if le sorguluyoruz.//categoryname limonata yazıyor.
+                if (category.Categories.Count>0)
+                {
+                    SetSubNodes(subnode, category.Categories.OrderBy(x => x.Name).ToList());
+                    //metot içinde aynı metodu çağırıyorum.recursive metot.
+                }
+            }
+        }
+
+        private void tvCategory_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }

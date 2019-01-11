@@ -38,29 +38,30 @@
             // tvCategory
             // 
             this.tvCategory.FullRowSelect = true;
-            this.tvCategory.Location = new System.Drawing.Point(39, 22);
+            this.tvCategory.Location = new System.Drawing.Point(200, 22);
             this.tvCategory.Name = "tvCategory";
             this.tvCategory.Size = new System.Drawing.Size(195, 336);
             this.tvCategory.TabIndex = 0;
+            this.tvCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterSelect);
             // 
             // cmbKategori
             // 
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(253, 22);
+            this.cmbKategori.Location = new System.Drawing.Point(12, 22);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(145, 21);
             this.cmbKategori.TabIndex = 1;
             // 
             // txtKategoriAdi
             // 
-            this.txtKategoriAdi.Location = new System.Drawing.Point(253, 66);
+            this.txtKategoriAdi.Location = new System.Drawing.Point(12, 66);
             this.txtKategoriAdi.Name = "txtKategoriAdi";
             this.txtKategoriAdi.Size = new System.Drawing.Size(145, 20);
             this.txtKategoriAdi.TabIndex = 2;
             // 
             // rtbAciklama
             // 
-            this.rtbAciklama.Location = new System.Drawing.Point(253, 110);
+            this.rtbAciklama.Location = new System.Drawing.Point(12, 110);
             this.rtbAciklama.Name = "rtbAciklama";
             this.rtbAciklama.Size = new System.Drawing.Size(145, 93);
             this.rtbAciklama.TabIndex = 3;
@@ -68,7 +69,7 @@
             // 
             // btnKategori
             // 
-            this.btnKategori.Location = new System.Drawing.Point(253, 236);
+            this.btnKategori.Location = new System.Drawing.Point(12, 236);
             this.btnKategori.Name = "btnKategori";
             this.btnKategori.Size = new System.Drawing.Size(145, 23);
             this.btnKategori.TabIndex = 4;
