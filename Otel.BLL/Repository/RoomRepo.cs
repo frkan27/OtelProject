@@ -11,7 +11,7 @@ namespace Otel.BLL.Repository
     {
         public override List<Room> GetAll()
         {
-            return base.GetAll(x => x.IsUseable);
+            return base.GetAll(x => x.IsUseable);//tüm odaları istediğimde her zaman useable olanlar gelsin.
         }
     }
 }

@@ -38,6 +38,7 @@
             this.nudFiyat = new System.Windows.Forms.NumericUpDown();
             this.cbSatistaMi = new System.Windows.Forms.CheckBox();
             this.btnUrunKaydet = new System.Windows.Forms.Button();
+            this.btnRezervasyon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudFiyat)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +132,22 @@
             this.btnUrunKaydet.UseVisualStyleBackColor = true;
             this.btnUrunKaydet.Click += new System.EventHandler(this.btnUrunKaydet_Click);
             // 
+            // btnRezervasyon
+            // 
+            this.btnRezervasyon.Location = new System.Drawing.Point(582, 263);
+            this.btnRezervasyon.Name = "btnRezervasyon";
+            this.btnRezervasyon.Size = new System.Drawing.Size(181, 140);
+            this.btnRezervasyon.TabIndex = 10;
+            this.btnRezervasyon.Text = "Rezervasyon";
+            this.btnRezervasyon.UseVisualStyleBackColor = true;
+            this.btnRezervasyon.Click += new System.EventHandler(this.btnRezervasyon_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRezervasyon);
             this.Controls.Add(this.btnUrunKaydet);
             this.Controls.Add(this.cbSatistaMi);
             this.Controls.Add(this.nudFiyat);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.NumericUpDown nudFiyat;
         private System.Windows.Forms.CheckBox cbSatistaMi;
         private System.Windows.Forms.Button btnUrunKaydet;
+        private System.Windows.Forms.Button btnRezervasyon;
     }
 }
 

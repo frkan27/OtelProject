@@ -98,10 +98,10 @@ namespace Otel.WFA
             foreach (var category in categories)
             {
                 //root u oluşturan mekanizma.
-                TreeNode node = new TreeNode(category.Name);//category.Name i nodeaekliyor.//içeceklerin ismini yazdı.
+                TreeNode node = new TreeNode(category.Name)//category.Name i nodeaekliyor.//içeceklerin ismini yazdı.
                 {
-                    node.Tag = category.Id;//tag object tipinde oldupu için istefiğim değeri vereblirim.categoryıdyi gömüyorum
-                }
+                    Tag = category.Id//tag object tipinde oldupu için istefiğim değeri vereblirim.categoryıdyi gömüyorum
+                };
 
                     tvCategory.Nodes.Add(node);//içeceklerin isminien dıstaki root a ekledi.
                 if(category.Categories.Count>0)//içeceklerin içinde 2 alt kategori var. true oldu içeri girdi.
@@ -118,10 +118,10 @@ namespace Otel.WFA
         {
             foreach (var category in categories)//birden fazla kategori gelceğiiçin foreach.//iki tane var diyelim limonata ve kahve.
             {
-                TreeNode subnode = new TreeNode(category.Name);
+                TreeNode subnode = new TreeNode(category.Name)
                 {
-                    node.Tag = category.Id;//etiket demek arka planda veri tasımak için kullanılır.
-                }
+                    Tag = category.Id//etiket demek arka planda veri tasımak için kullanılır.
+                };
                 node.Nodes.Add(subnode);//bununda alt kategorisi varsa if le sorguluyoruz.//categoryname limonata yazıyor.
                 if (category.Categories.Count>0)
                 {
@@ -165,14 +165,17 @@ namespace Otel.WFA
             }
             try
             {
-                //yeni ürün ekliyoruz.
-                new ProductRepo().Insert(new Product()
+                using (var productRepo = new ProductRepo())
                 {
-                    CategoryId=categoryId.Value,
-                    Name=txtUrunAdi.Text,
-                    Price=nudFiyat.Value,
-                    IsActive=cbSatistaMi.Checked
-                });
+                    //yeni ürün ekliyoruz.
+                     productRepo.Insert(new Product()
+                    {
+                        CategoryId = categoryId.Value,
+                        Name = txtUrunAdi.Text,
+                        Price = nudFiyat.Value,
+                        IsActive = cbSatistaMi.Checked
+                    });
+                }
                 MessageBox.Show("Urun ekleme basarılı.");
                 
 
@@ -181,6 +184,19 @@ namespace Otel.WFA
             {
 
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private FrmRezervasyon rezervasyonForm;
+        private void btnRezervasyon_Click(object sender, EventArgs e)
+        {
+            if (rezervasyonForm == null || rezervasyonForm.IsDisposed)
+            {
+                rezervasyonForm = new FrmRezervasyon()
+                {
+                    Text = "RezervasyonForm",//rezervasyonForm.Text yerine böyle yazabiliriz.
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                rezervasyonForm.Show();
             }
         }
     }
