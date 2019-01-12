@@ -102,12 +102,12 @@ namespace Otel.WFA
                         RoomId = selectedRoom.Id,
                         RegisterViewModels = model
                     });
-                    MessageBox.Show("rezervasyonunuz oluştu")
+                    MessageBox.Show("rezervasyonunuz oluştu");
                 }
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("hata oluştu"+ex.Message9;
+                    MessageBox.Show("hata oluştu"+ex.Message);
                 }
             }
         }

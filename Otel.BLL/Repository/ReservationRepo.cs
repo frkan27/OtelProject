@@ -53,7 +53,7 @@ namespace Otel.BLL.Repository
                 catch (Exception ex)
                 {
                     tran.Rollback();
-                    throw;
+                    throw ex;
                 }
             }
         }
